@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // * to return the index.html file
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     console.log('Sent index.html');
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
@@ -29,7 +29,14 @@ app.get('/notes', (req, res) => {
 //  /api/notes to read the db.json file and return all saved notes as JSON
 app.get('/api/notes', (req, res) => {
     console.info(`GET request received for notes`);
-    getAndRenderNotes(noteData).then((data) => res.json(JSON.parse(data)));
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            const parsedData = JSON.parse(data);
+            res.status(201).json(parsedData);
+        }
+    });
 });
 
 //  /api/notes to receive a new note to save, add to the db.json file, return the new note to the client.  Each note should have a unique id.
@@ -59,8 +66,12 @@ app.post('/api/notes', (req, res) => {
                 console.error(err);
             } else {
                 const parsedData = JSON.parse(data);
+
                 parsedData.push(newNote);
-                fs.writeFile(newNote, parsedData);
+
+                fs.writeFile('db/db.json', JSON.stringify(parsedData, null, 4), (err) =>
+                    err ? console.error(err) : console.info(`\nData written to db/db.json`)
+                );
             }
         });
 

@@ -53,7 +53,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: randomId(8),
+            id: randomId(8),
         };
 
         /*   const response = {

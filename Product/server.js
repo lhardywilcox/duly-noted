@@ -1,10 +1,8 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-
+// npm package selected to create random id numbers
 const randomId = require('random-id-util');
-
-//const { getAndRenderNotes, handleNoteSave } = require('./public/assets/js/index.js');
 
 const noteData = require('./db/db.json');
 const PORT = 3001;
@@ -15,18 +13,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// * to return the index.html file
+// Returns the index.html file after the server starts
 app.get('/', (req, res) => {
     console.log('Sent index.html');
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
-//  /notes to return the notes.html file
+// Returns the notes.html file when the "Get Started" button is clicked
 app.get('/notes', (req, res) => {
     console.log('Sent notes.html');
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
 
-//  /api/notes to read the db.json file and return all saved notes as JSON
+// Reads the db.json file and return all saved notes as JSON
 app.get('/api/notes', (req, res) => {
     console.info(`GET request received for notes`);
     fs.readFile('db/db.json', 'utf8', (err, data) => {
@@ -39,36 +37,28 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
-//  /api/notes to receive a new note to save, add to the db.json file, return the new note to the client.  Each note should have a unique id.
+// Receives a new note to save, add it to the db.json file, returns the new note to the user.
 app.post('/api/notes', (req, res) => {
     // Log that a POST request was received
     console.info(`POST request received to add a note`);
 
-    // Destructuring assignment for the items in req.body
     const { title, text } = req.body;
-
-    // If all the required properties are present
+    // If data exists in both title and text, creates the new note
     if (title && text) {
-        // Variable for the object we will save
         const newNote = {
             title,
             text,
-            id: randomId(8),
+            id: randomId(8), // Adds the random id
         };
-
-        /*   const response = {
-              status: 'success',
-              body: newNote,
-          }; */
-
+        // Reads the saved notes from the db file
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
                 const parsedData = JSON.parse(data);
-
+                // Adds new note to the parsed data
                 parsedData.push(newNote);
-
+                // Writes all the notes to the db file
                 fs.writeFile('db/db.json', JSON.stringify(parsedData, null, 4), (err) =>
                     err ? console.error(err) : console.info(`\nData written to db/db.json`)
                 );

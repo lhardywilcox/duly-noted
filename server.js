@@ -4,7 +4,6 @@ const fs = require('fs');
 // npm package selected to create random id numbers
 const randomId = require('random-id-util');
 
-const noteData = require('./db/db.json');
 const PORT = process.env.PORT || 3001;
 const app = express();
 

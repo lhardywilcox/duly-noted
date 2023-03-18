@@ -5,7 +5,7 @@ const fs = require('fs');
 const randomId = require('random-id-util');
 
 const noteData = require('./db/db.json');
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());

@@ -12,6 +12,8 @@ I also learned a lot about using Insomnia to test my routes, and found it to be 
 
 One feature that isn't available yet, is the ability to delete notes.  The DELETE route has not been created yet, as it was not part of the acceptance criteria, but it is a piece of functionality that I would like to add to the project in the future.
 
+The heroku deployment was also something new and a bit of a challenge for me.  The build was successful, but there were a couple changes I needed to make (adding a script for starting, and file structure changes so heroku could access the server.js file).  I am happy to say that I was able to solve those problems by reading some docs, looking at the logs, seeing what went wrong, and making some changes.  Sometimes those are the best opportunities for learning!
+
 ## Table of Contents
 
 -[Installation](#Installation)
@@ -30,7 +32,7 @@ One feature that isn't available yet, is the ability to delete notes.  The DELET
 
 This application has been deployed to Heroku at the following url:
 
-    [Duly-Noted Deployment](https://duly-noted-note-taker.herokuapp.com)
+[Duly-Noted Deployment](https://duly-noted-note-taker.herokuapp.com)
 
 ## Usage
 

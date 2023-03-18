@@ -1,4 +1,4 @@
-# duly-noted# 
+# duly-noted
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -30,7 +30,7 @@ The heroku deployment was also something new and a bit of a challenge for me.  T
 
 ## Installation
 
-This application has been deployed to Heroku at the following url:
+To see the Duly-Noted in action, click on the link below:
 
 [Duly-Noted Deployment](https://duly-noted-note-taker.herokuapp.com)
 

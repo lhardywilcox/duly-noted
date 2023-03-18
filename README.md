@@ -30,7 +30,7 @@ One feature that isn't available yet, is the ability to delete notes.  The DELET
 
 This application has been deployed to Heroku at the following url:
 
-    PUT HEROKU DEPLOYMENT LINK HERE.
+    [Duly-Noted Deployment](https://duly-noted-note-taker.herokuapp.com)
 
 ## Usage
 
